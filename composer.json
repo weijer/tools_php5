@@ -1,5 +1,5 @@
 {
-    "name": "weijer/tools",
+    "name": "weijer/tools_php5",
     "type": "library",
     "description": "php tools",
     "keywords": [
@@ -23,7 +23,7 @@
         "guzzlehttp/guzzle": "^6.0",
         "nesbot/carbon": "^1.26.0",
         "symfony/filesystem": "^4.0",
-        "weijer/snowflake": "*"
+        "weijer/snowflake_php5": "*"
     },
     "require-dev": {
         "phpunit/phpunit": ">=7.0",
