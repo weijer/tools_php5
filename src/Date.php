@@ -39,7 +39,7 @@ class Date
      * @param bool      $absolute
      * @return string
      */
-    public static function timeDiffFormat(DateTime $leftTime, DateTime $rightTime, $absolute = false): string
+    public static function timeDiffFormat(DateTime $leftTime, DateTime $rightTime, $absolute = false)
     {
         $diff = $leftTime->diff($rightTime, $absolute);
         return ($absolute && !$diff->invert ? '-' : '')

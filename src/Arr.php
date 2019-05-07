@@ -24,7 +24,7 @@ class Arr
      * @param bool     $descending
      * @return array
      */
-    public static function sortBy(array $array, callable $callback, $options = SORT_REGULAR, $descending = false): array
+    public static function sortBy(array $array, callable $callback, $options = SORT_REGULAR, $descending = false)
     {
         $results = [];
 
@@ -49,7 +49,7 @@ class Arr
      * @param int   $arg   排序规则
      * @return array
      */
-    public static function arrSortByField(array $arr, $field, $arg = SORT_ASC): array
+    public static function arrSortByField(array $arr, $field, $arg = SORT_ASC)
     {
         if (!empty($arr)) {
             foreach ($arr as $v) {
@@ -68,7 +68,7 @@ class Arr
      * @return array
      * @throws Exception
      */
-    public static function arrGroup(array $arr, string $field, $unique = false): array
+    public static function arrGroup(array $arr, string $field, $unique = false)
     {
         $group = [];
         foreach ($arr as $item) {
@@ -90,7 +90,7 @@ class Arr
      * @param array $array
      * @return array
      */
-    public static function heapSort(array $array = []): array
+    public static function heapSort(array $array = [])
     {
         $len     = count($array);
         $lastKey = ($len - 1) >> 1;
@@ -112,7 +112,7 @@ class Arr
      * @param int   $start
      * @param int   $end
      */
-    private static function maxHeapify(&$arr, $start, $end): void
+    private static function maxHeapify(&$arr, $start, $end)
     {
         $son = $start * 2 + 1;
         if ($son >= $end) {
@@ -131,7 +131,7 @@ class Arr
      * @param mixed $a
      * @param mixed $b
      */
-    private static function swap(&$a, &$b): void
+    private static function swap(&$a, &$b)
     {
         $t = $a;
         $a = $b;
@@ -145,7 +145,7 @@ class Arr
      * @param array $array
      * @return array
      */
-    public static function mergeSort(array $array): array
+    public static function mergeSort(array $array)
     {
         $len = count($array);
         if ($len <= 1) {
@@ -173,7 +173,7 @@ class Arr
      * @param array $array
      * @return array
      */
-    public static function quickSort(array $array): array
+    public static function quickSort(array $array)
     {
         $len = count($array);
         if ($len <= 1) {

@@ -19,7 +19,7 @@ class Tools
      * @param bool $binaryPrefix
      * @return string
      */
-    public static function getNiceFileSize(int $bytes, bool $binaryPrefix = true): string
+    public static function getNiceFileSize(int $bytes, bool $binaryPrefix = true)
     {
         if ($binaryPrefix) {
             $unit = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB');

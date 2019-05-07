@@ -16,7 +16,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return string
      */
-    public function hash($path): string
+    public function hash($path)
     {
         return md5_file($path);
     }
@@ -28,7 +28,7 @@ class Filesystem extends FilesystemAlias
      * @param string $data
      * @return int
      */
-    public function prepend($path, $data): int
+    public function prepend($path, $data)
     {
         if ($this->exists($path)) {
             return $this->put($path, $data . $this->get($path));
@@ -43,7 +43,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return bool
      */
-    public function exists($path): bool
+    public function exists($path)
     {
         return file_exists($path);
     }
@@ -68,7 +68,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return void
      */
-    protected function ensureCacheDirectoryExists($path): void
+    protected function ensureCacheDirectoryExists($path)
     {
         if (!$this->exists(dirname($path))) {
             $this->makeDirectory(dirname($path), 0777, true, true);
@@ -84,7 +84,7 @@ class Filesystem extends FilesystemAlias
      * @param bool   $force
      * @return bool
      */
-    public function makeDirectory($path, $mode = 0755, $recursive = false, $force = false): bool
+    public function makeDirectory($path, $mode = 0755, $recursive = false, $force = false)
     {
         if ($force) {
             return @mkdir($path, $mode, $recursive);
@@ -100,7 +100,7 @@ class Filesystem extends FilesystemAlias
      * @param bool   $lock
      * @return string
      */
-    public function get($path, $lock = false): string
+    public function get($path, $lock = false)
     {
         if ($this->isFile($path)) {
             return $lock ? $this->sharedGet($path) : file_get_contents($path);
@@ -115,7 +115,7 @@ class Filesystem extends FilesystemAlias
      * @param string $file
      * @return bool
      */
-    public function isFile($file): bool
+    public function isFile($file)
     {
         return is_file($file);
     }
@@ -126,7 +126,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return string
      */
-    public function sharedGet($path): string
+    public function sharedGet($path)
     {
         $contents = '';
 
@@ -155,7 +155,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return int
      */
-    public function size($path): int
+    public function size($path)
     {
         return filesize($path);
     }
@@ -167,7 +167,7 @@ class Filesystem extends FilesystemAlias
      * @param string $data
      * @return int
      */
-    public function append($path, $data): int
+    public function append($path, $data)
     {
         return file_put_contents($path, $data, FILE_APPEND);
     }
@@ -195,7 +195,7 @@ class Filesystem extends FilesystemAlias
      * @param string $target
      * @return bool
      */
-    public function move($path, $target): bool
+    public function move($path, $target)
     {
         return rename($path, $target);
     }
@@ -206,7 +206,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return string
      */
-    public function name($path): string
+    public function name($path)
     {
         return pathinfo($path, PATHINFO_FILENAME);
     }
@@ -217,7 +217,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return string
      */
-    public function basename($path): string
+    public function basename($path)
     {
         return pathinfo($path, PATHINFO_BASENAME);
     }
@@ -228,7 +228,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return string
      */
-    public function dirname($path): string
+    public function dirname($path)
     {
         return pathinfo($path, PATHINFO_DIRNAME);
     }
@@ -239,7 +239,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return string
      */
-    public function extension($path): string
+    public function extension($path)
     {
         return pathinfo($path, PATHINFO_EXTENSION);
     }
@@ -250,7 +250,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return string
      */
-    public function type($path): string
+    public function type($path)
     {
         return filetype($path);
     }
@@ -272,7 +272,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return int
      */
-    public function lastModified($path): int
+    public function lastModified($path)
     {
         return filemtime($path);
     }
@@ -283,7 +283,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return bool
      */
-    public function isReadable($path): bool
+    public function isReadable($path)
     {
         return is_readable($path);
     }
@@ -294,7 +294,7 @@ class Filesystem extends FilesystemAlias
      * @param string $path
      * @return bool
      */
-    public function isWritable($path): bool
+    public function isWritable($path)
     {
         return is_writable($path);
     }
@@ -307,7 +307,7 @@ class Filesystem extends FilesystemAlias
      * @param bool   $overwrite
      * @return bool
      */
-    public function moveDirectory($from, $to, $overwrite = false): bool
+    public function moveDirectory($from, $to, $overwrite = false)
     {
         if ($overwrite && $this->isDirectory($to) && !$this->deleteDirectory($to)) {
             return false;
@@ -322,7 +322,7 @@ class Filesystem extends FilesystemAlias
      * @param string $directory
      * @return bool
      */
-    public function isDirectory($directory): bool
+    public function isDirectory($directory)
     {
         return is_dir($directory);
     }
@@ -336,7 +336,7 @@ class Filesystem extends FilesystemAlias
      * @param bool   $preserve
      * @return bool
      */
-    public function deleteDirectory($directory, $preserve = false): bool
+    public function deleteDirectory($directory, $preserve = false)
     {
         if (!$this->isDirectory($directory)) {
             return false;
@@ -366,7 +366,7 @@ class Filesystem extends FilesystemAlias
      * @param string|array $paths
      * @return bool
      */
-    public function delete($paths): bool
+    public function delete($paths)
     {
         $paths = is_array($paths) ? $paths : func_get_args();
 
@@ -393,7 +393,7 @@ class Filesystem extends FilesystemAlias
      * @param int    $options
      * @return bool
      */
-    public function copyDirectory($directory, $destination, $options = null): bool
+    public function copyDirectory($directory, $destination, $options = null)
     {
         if (!$this->isDirectory($directory)) {
             return false;
@@ -433,7 +433,7 @@ class Filesystem extends FilesystemAlias
      * @param string $target
      * @return bool
      */
-    public function copyFile($path, $target): bool
+    public function copyFile($path, $target)
     {
         return copy($path, $target);
     }
@@ -444,7 +444,7 @@ class Filesystem extends FilesystemAlias
      * @param string $directory
      * @return bool
      */
-    public function cleanDirectory($directory): bool
+    public function cleanDirectory($directory)
     {
         return $this->deleteDirectory($directory, true);
     }
@@ -454,7 +454,7 @@ class Filesystem extends FilesystemAlias
      *
      * @return bool
      */
-    public function windowsOs(): bool
+    public function windowsOs()
     {
         return stripos(PHP_OS, 'win') === 0;
     }
