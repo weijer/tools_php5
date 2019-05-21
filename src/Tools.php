@@ -19,21 +19,21 @@ class Tools
      * @param bool $binaryPrefix
      * @return string
      */
-    public static function getNiceFileSize(int $bytes, bool $binaryPrefix = true)
+    public static function getNiceFileSize(int $bytes,  $binaryPrefix = true)
     {
         if ($binaryPrefix) {
             $unit = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB');
             if ($bytes === 0) {
                 return '0 ' . $unit[0];
             }
-            return @round($bytes / (1024 ** ($i = floor(log($bytes, 1024)))), 2) . ' ' . ($unit[(int)$i] ?? 'B');
+            return @round($bytes / (1024 ** ($i = floor(log($bytes, 1024)))), 2) . ' ' . ($unit[(int)$i] ?: 'B');
         }
 
         $unit = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
         if ($bytes === 0) {
             return '0 ' . $unit[0];
         }
-        return @round($bytes / (1000 ** ($i = floor(log($bytes, 1000)))), 2) . ' ' . ($unit[(int)$i] ?? 'B');
+        return @round($bytes / (1000 ** ($i = floor(log($bytes, 1000)))), 2) . ' ' . ($unit[(int)$i] ?: 'B');
     }
 
     /**
